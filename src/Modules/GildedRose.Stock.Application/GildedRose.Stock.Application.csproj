@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GildedRose.Api\GildedRose.Api.csproj" />
+    <ProjectReference Include="..\GildedRose.Stock.Domain\GildedRose.Stock.Domain.csproj" />
   </ItemGroup>
 
 </Project>
