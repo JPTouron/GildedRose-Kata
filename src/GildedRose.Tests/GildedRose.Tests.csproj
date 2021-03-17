@@ -25,4 +25,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GildedRose.Console\GildedRose.Console.csproj" />
+  </ItemGroup>
 </Project>

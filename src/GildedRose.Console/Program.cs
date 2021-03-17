@@ -1,38 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GildedRose.Console
 {
-    class Program
+    public class Item
     {
-        IList<Item> Items;
-        static void Main(string[] args)
+        public string Name { get; set; }
+
+        public int Quality { get; set; }
+
+        public int SellIn { get; set; }
+    }
+
+    public class Program
+    {
+        public IList<Item> Items;
+
+        public void DisplayItems()
         {
-            System.Console.WriteLine("OMGHAI!");
-
-            var app = new Program()
+            foreach (var item in Items)
             {
-                Items = new List<Item>
-                                          {
-                                              new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                                              new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                                              new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                                              new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                                              new Item
-                                                  {
-                                                      Name = "Backstage passes to a TAFKAL80ETC concert",
-                                                      SellIn = 15,
-                                                      Quality = 20
-                                                  },
-                                              new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
-                                          }
-
-            };
-
-            app.UpdateQuality();
-
-            System.Console.ReadKey();
-
+                System.Console.WriteLine($"{item.Name}:");
+                System.Console.WriteLine($"\tSellIn:  {item.SellIn}");
+                System.Console.WriteLine($"\tQuality: {item.Quality}");
+                System.Console.WriteLine($"-------------------------");
+                System.Console.WriteLine($"");
+            }
         }
 
         public void UpdateQuality()
@@ -43,7 +35,9 @@ namespace GildedRose.Console
                 {
                     if (Items[i].Quality > 0)
                     {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                        if (Items[i].Name == "Conjured Mana Cake")
+                            UpdateConjuredItemQuality(i);
+                        else if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
                             Items[i].Quality = Items[i].Quality - 1;
                         }
@@ -111,14 +105,45 @@ namespace GildedRose.Console
             }
         }
 
-    }
+        private static void Main(string[] args)
+        {
+            System.Console.WriteLine("OMGHAI!");
 
-    public class Item
-    {
-        public string Name { get; set; }
+            var app = new Program()
+            {
+                Items = new List<Item>
+                                          {
+                                              new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
+                                              new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
+                                              new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
+                                              new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
+                                              new Item
+                                                  {
+                                                      Name = "Backstage passes to a TAFKAL80ETC concert",
+                                                      SellIn = 15,
+                                                      Quality = 20
+                                                  },
+                                              new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+                                          }
+            };
 
-        public int SellIn { get; set; }
+            app.DisplayItems();
 
-        public int Quality { get; set; }
+            System.Console.WriteLine("Press any key to update qualities...");
+            System.Console.ReadLine();
+
+            app.UpdateQuality();
+
+            System.Console.WriteLine("Qualities updated");
+
+            app.DisplayItems();
+
+            System.Console.ReadKey();
+        }
+
+        private void UpdateConjuredItemQuality(int i)
+        {
+            Items[i].Quality = Items[i].Quality - 2;
+        }
     }
 }
