@@ -1,0 +1,54 @@
+@startuml "Gilded Rose - Take 1"
+
+title Gilded Rose - Take 1
+
+interface IItem{
+
+    SellIn : Days <b>(number of days we have to sell the item)</b>
+    Quality: ?? <b>(how valuable the item is)<b/>
+
+}
+note right
+    SellIn and Quality are decreased by ?? after <b>each day</b>
+    ....
+    * Once the sell by date has passed, Quality degrades twice as fast
+    * The Quality of an item is never negative
+    * The Quality of an item is never more than 50
+end note
+
+interface ILegendaryItem
+
+note left
+    * never has to be sold or decreases in Quality, ie: Sulfuras
+
+end note
+
+IItem <|-up- ILegendaryItem
+
+interface IAgedBrie << AgedBrie >>
+
+note left
+    Item actual name missing, we'll call it // <b>aged brie</b> //
+    .....
+    * increases in Quality the older it gets, ie Aged Brie
+end note
+
+IItem <|-up- IAgedBrie
+
+interface IBackstagePasses
+
+note left
+    * Like aged brie, increases in Quality as it’s SellIn value approaches;
+    * Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less
+    but Quality drops to 0 after the concert
+end note
+IItem <|-- IBackstagePasses
+
+interface IConjuredItem
+
+note left
+    *  Quality degrads twice as fast as normal items
+end note
+IItem <|-- IConjuredItem
+
+@enduml
