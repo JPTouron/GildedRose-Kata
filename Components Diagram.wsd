@@ -1,0 +1,51 @@
+@startuml "Gilded Rose - Components"
+
+title  Components Diagram\n\n
+
+package GildedRoseStockModule{
+
+    frame DomainFolder{
+        component [Domain] as Domain
+        interface IItem
+        Domain -right- IItem
+    }
+
+    frame ApplicationFolder{
+        component [Application] as App
+        interface IQualityUpdater
+        interface IItemsRepository
+        App -up-> IItem : makes use of
+        App -right- IItemsRepository
+        App -down- IQualityUpdater : exposes
+
+        note left of App : Makes use of IItem
+    }
+}
+
+package Infrastructure {
+    IItemsRepository )-left-# [ItemsRepository]
+}
+
+package GildedRoseApi {
+    component [GildedRoseApi] as Api
+    Api -up-( IQualityUpdater : makes use of
+
+    interface IGildedRoseApi
+    Api -- IGildedRoseApi : exposes
+}
+
+package GildedRoseConsole{
+    component [GildedRoseConsole] as UI
+    UI -up-( IGildedRoseApi : makes use of
+
+    note left of UI
+        "" ... ""
+        "" IGildedRoseApi api; ""
+        "" api.UpdateItemsQuality() ""
+        "" ... ""
+    end note
+}
+
+ UI -right- :Standard User:
+
+@enduml
