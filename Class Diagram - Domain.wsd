@@ -1,0 +1,223 @@
+@startuml "Gilded Rose - Domain Class Diagram"
+
+title  Domain Class Diagram\n\n
+
+package Domain {
+
+    folder Aggregates {
+
+        folder ItemAggregate{
+
+            class Item
+            {
+                + string Name {get;set;}
+                + int Quality {get;set;}
+                + int SellIn {get;set;}
+            }
+            note right of Item : this class must not be changed\n(can be moved around though)
+        }
+
+        class BackstagePassItem{
+            -Item item
+            -IDecreasableSellInValue sellIn
+            -BackstagePassQuality quality
+            +ctor(Item item, IDecreasableSellInValue sellIn, BackstagePassQuality quality)
+            __
+            + void UpdateQuality()
+            + Item GetItem()
+        }
+        Item o-up- BackstagePassItem
+
+
+        class ConjuredItem{
+            -Item item
+            -IDecreasableSellInValue sellIn
+            -ConjuredQuality quality
+            +ctor(Item item, IDecreasableSellInValue sellIn, ConjuredQuality quality)
+            __
+            + void UpdateQuality()
+            + Item GetItem()
+        }
+        Item o-up- ConjuredItem
+
+        class AgedBrieItem {
+            -Item item
+            -IDecreasableSellInValue sellIn
+            -AgedBrieQuality quality
+            +ctor(Item item, IDecreasableSellInValue sellIn, AgedBrieQuality quality)
+            __
+            + void UpdateQuality()
+            + Item GetItem()
+        }
+        Item o-up- AgedBrieItem
+
+        class NormalItem {
+            -Item item
+            -IDecreasableSellInValue sellIn
+            -NormalQuality quality
+            +ctor(Item item, IDecreasableSellInValue sellIn, NormalQuality quality)
+            __
+            + void UpdateQuality()
+            + Item GetItem()
+        }
+        Item o-- NormalItem
+
+        class SulfurasItem {
+            -Item item
+            -IDecreasableSellInValue sellIn
+            -NormalQuality quality
+            +ctor(Item item, IDecreasableSellInValue sellIn, SulfurasQuality quality)
+            __
+            + void UpdateQuality()
+            + Item GetItem()
+        }
+        Item o-- SulfurasItem
+
+        folder Ports{
+
+            interface ISellInValue{
+                +int Value
+            }
+            interface IDecreasableSellInValue{
+                +void Decrease()
+            }
+            IDecreasableSellInValue  -left-|>  ISellInValue
+        }
+    }
+
+    folder ValueObjects{
+
+        #class QualityValue <<ValueObject>>{
+            -int value
+            +ctor(int value) -> validate: value <=50
+            +void IncreaseBy(int value)  -> validate: value <=50
+            +void DecreaseBy(int value)  -> validate: value <=50
+            +void Reset() -> sets value = 0
+            +int Value {get;}
+        }
+
+        #class SellInValue <<ValueObject>>{
+            -int value
+            +ctor(int value) -> no validations, can be any value
+            +int Value {get;}
+            +Decrease() -> <b>only decreases</b> by one
+        }
+        ISellInValue <|---- SellInValue
+        IDecreasableSellInValue <|-left- SellInValue
+
+        folder Contracts {
+            interface IQuality {
+                +QualityValue Value
+            }
+
+            interface IQualityUpdatable
+            {
+                + void UpdateQuality()
+            }
+        }
+
+        '''''''''''''''''''''''''''''''''''
+        class SulfurasQuality {
+            -ISellInValue currentSellIn -> can only read the value
+            +ctor (SellInValue initialValue)
+        }
+
+        IQuality <|-up-SulfurasQuality
+        note left of SulfurasQuality
+            // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality //
+        end note
+        ''''''''''''''''''''''''''''''
+        folder Base {
+            abstract class QualityBaseUpdatable <<ValueObject>>{
+                -QualityValue value
+                -ISellInValue sellIn -> can only read the value
+                __
+                #{abstract}ctor (QualityValue initialValue, SellInValue sellIn)
+                __
+                +QualityValue Value
+                +void UpdateQuality() -> ""sellIn.Decrease()""
+                .....
+                #{abstract} void UpdateQualityInternal()
+                //<b>overridable to implement updating logic</b>//
+                ""value.IncreaseBy(x)""
+                //or//
+                ""value.DecreaseBy(y)""
+                .....
+                #{abstract} void ValidateNewSellIn(SellInValue newSellIn)
+            }
+            QualityValue *-- QualityBaseUpdatable
+            SellInValue *---- QualityBaseUpdatable
+            IQuality <|-- QualityBaseUpdatable
+            IQualityUpdatable <|-- QualityBaseUpdatable
+        }
+
+        '''''''''''''''''''''''''''''''''''
+        class NormalQuality {
+            -ISellInValue currentSellIn -> can only read the value
+            -QualityValue Qvalue
+            +ctor (QualityValue initialValue, SellInValue currentSellIn)
+            +QualityValue
+            +UpdateQuality()
+            #void UpdateQualityInternal()
+        }
+
+        QualityBaseUpdatable <|---- NormalQuality
+
+        note right of NormalQuality
+            // Once the sell by date has passed, Quality degrades twice as fast //
+            ....
+            "" UpdateQuality() => if newSellIn >0:  Qvalue.DecreaseBy(1)  ""
+            "" UpdateQuality() => if newSellIn <=0: Qvalue.DecreaseBy(2)  ""
+            sellIn can be a negative value
+        end note
+
+        '''''''''''''''''''''''''''''''''''
+        class BackstagePassQuality {
+            -ISellInValue currentSellIn -> can only read the value
+            -QualityValue Qvalue
+            +ctor (QualityValue initialValue, SellInValue currentSellIn)
+        }
+        QualityBaseUpdatable  <|-left-- BackstagePassQuality
+        note right of BackstagePassQuality
+            // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches //
+            // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but //
+            // Quality drops to 0 after the concert //
+
+            ....
+            ""UpdateQuality()""
+            * ""=> if newSellIn > 10: Qvalue.IncreaseBy(1)""
+            * ""=> if newSellIn <= 10: Qvalue.IncreaseBy(2)""
+            * ""=> if newSellIn <= 5: Qvalue.IncreaseBy(3)""
+            * ""=> if newSellIn <=0: Qvalue.Reset() ""assuming concert is performed when SellIn == 0
+        end note
+
+        '''''''''''''''''''''''''''''''''''
+        class AgedBrieQuality {
+            -ISellInValue currentSellIn -> can only read the value
+            -QualityValue Qvalue
+            +ctor (QualityValue initialValue, SellInValue currentSellIn)
+        }
+        QualityBaseUpdatable <|---- AgedBrieQuality
+
+        note right of AgedBrieQuality
+            // "Aged Brie" actually increases in Quality the older it gets //
+            ....
+            "" UpdateQuality() =>   Qvalue.IncreaseBy(1)  ""
+        end note
+        '''''''''''''''''''''''''''''''''''
+        class ConjuredQuality{
+            -ISellInValue currentSellIn -> can only read the value
+            -QualityValue Qvalue
+            +ctor (QualityValue initialValue, SellInValue currentSellIn)
+        }
+        QualityBaseUpdatable <|-- ConjuredQuality
+        note right of ConjuredQuality
+            // "Conjured" items degrade in Quality twice as fast as normal items //
+            ....
+            "" UpdateQuality() =>   Qvalue.DecreaseBy(2)  ""
+        end note
+
+    }
+}
+
+@enduml
