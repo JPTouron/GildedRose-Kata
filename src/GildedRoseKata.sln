@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Solution Items", "00.Sol
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stock", "Stock", "{9991D4B9-378E-41C3-B334-75AB17D5C582}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Modules", "01.Modules", "{E5F93E61-CB84-4F5D-B077-A3CE9B7E5E3D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Modules", "02.Modules", "{E5F93E61-CB84-4F5D-B077-A3CE9B7E5E3D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Stock.Domain", "Modules\GildedRose.Stock.Domain\GildedRose.Stock.Domain.csproj", "{F0EC49AE-8317-4AC0-BD44-F766FA648396}"
 EndProject
@@ -22,15 +22,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Stock.Infrastruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Stock.Application", "Modules\GildedRose.Stock.Application\GildedRose.Stock.Application.csproj", "{E40E060A-EC13-49D4-8684-A1F76365EA6B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.GildedRose.Api", "02.GildedRose.Api", "{B9E844A8-8609-4642-AD94-14A44493E830}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.GildedRose.Api", "03.GildedRose.Api", "{B9E844A8-8609-4642-AD94-14A44493E830}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.GuildedRose.UI", "03.GuildedRose.UI", "{B2794BB0-21DB-46F4-A667-4DE03E6456F2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.GuildedRose.UI", "04.GuildedRose.UI", "{B2794BB0-21DB-46F4-A667-4DE03E6456F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Stock.Applications.Tests", "Modules\GildedRose.Stock.Applications.Tests\GildedRose.Stock.Applications.Tests.csproj", "{8E138544-18F3-490A-99B7-84068F6236C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Stock.Domain.Tests", "Modules\GildedRose.Stock.Domain.Tests\GildedRose.Stock.Domain.Tests.csproj", "{290C9ECD-C956-4CA4-81F0-787422C0A565}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Stock.Infrastructure.Tests", "Modules\GildedRose.Stock.Infrastructure.Tests\GildedRose.Stock.Infrastructure.Tests.csproj", "{FB47C4F1-2FA5-49ED-BEEF-FD15721B166C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{11A28F36-CB6E-47A2-8153-8982F3555395}"
 EndProject
@@ -38,7 +36,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9BBA5894-F2F8-49AC-8DFF-D150E623A510}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Api", "GildedRose.Api\GildedRose.Api.csproj", "{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose.Api", "GildedRose.Api\GildedRose.Api.csproj", "{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Core.BuildingBlocks", "Modules\GildedRose.Core.BuildingBlocks\GildedRose.Core.BuildingBlocks.csproj", "{8A3A67F8-5A3C-4224-BA69-8C8A2312A270}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Core", "01.Core", "{F906591C-31FC-4303-8A57-A7B87B929538}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,14 +76,14 @@ Global
 		{290C9ECD-C956-4CA4-81F0-787422C0A565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290C9ECD-C956-4CA4-81F0-787422C0A565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{290C9ECD-C956-4CA4-81F0-787422C0A565}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB47C4F1-2FA5-49ED-BEEF-FD15721B166C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB47C4F1-2FA5-49ED-BEEF-FD15721B166C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB47C4F1-2FA5-49ED-BEEF-FD15721B166C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB47C4F1-2FA5-49ED-BEEF-FD15721B166C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A3A67F8-5A3C-4224-BA69-8C8A2312A270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3A67F8-5A3C-4224-BA69-8C8A2312A270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3A67F8-5A3C-4224-BA69-8C8A2312A270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3A67F8-5A3C-4224-BA69-8C8A2312A270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,11 +97,11 @@ Global
 		{E40E060A-EC13-49D4-8684-A1F76365EA6B} = {9470FEF6-F99A-4387-8056-DC40BB8A1F8D}
 		{8E138544-18F3-490A-99B7-84068F6236C2} = {9470FEF6-F99A-4387-8056-DC40BB8A1F8D}
 		{290C9ECD-C956-4CA4-81F0-787422C0A565} = {11A28F36-CB6E-47A2-8153-8982F3555395}
-		{FB47C4F1-2FA5-49ED-BEEF-FD15721B166C} = {9BBA5894-F2F8-49AC-8DFF-D150E623A510}
 		{11A28F36-CB6E-47A2-8153-8982F3555395} = {9991D4B9-378E-41C3-B334-75AB17D5C582}
 		{9470FEF6-F99A-4387-8056-DC40BB8A1F8D} = {9991D4B9-378E-41C3-B334-75AB17D5C582}
 		{9BBA5894-F2F8-49AC-8DFF-D150E623A510} = {9991D4B9-378E-41C3-B334-75AB17D5C582}
 		{9CA01BF9-55A4-40CC-AEFF-6A9C2DAC5E5F} = {B9E844A8-8609-4642-AD94-14A44493E830}
+		{8A3A67F8-5A3C-4224-BA69-8C8A2312A270} = {F906591C-31FC-4303-8A57-A7B87B929538}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2986FA7-7EAA-4A8E-9092-7E864091FDD3}

@@ -1,4 +1,4 @@
-﻿using GildedRose.Stock.Domain;
+﻿using GildedRose.Stock.Domain.Items.Base;
 using System.Collections.Generic;
 
 namespace GildedRose.Stock.Application.Ports
