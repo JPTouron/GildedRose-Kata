@@ -25,4 +25,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GildedRose.Stock.Domain\GildedRose.Stock.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

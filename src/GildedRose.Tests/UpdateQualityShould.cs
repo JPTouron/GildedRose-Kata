@@ -1,5 +1,6 @@
 //using FluentAssertions;
 using GildedRose.Console;
+using GildedRose.Stock.Domain;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
