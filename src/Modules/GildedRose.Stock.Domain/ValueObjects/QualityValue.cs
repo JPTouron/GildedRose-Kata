@@ -1,8 +1,9 @@
 ﻿using Ardalis.GuardClauses;
+using GildedRose.Core.BuildingBlocks;
 
 namespace GildedRose.Stock.Domain.ValueObjects
 {
-    public class QualityValue
+    public class QualityValue : ValueObject<QualityValue>
     {
         private const int maxValue = 50;
         private const int minValue = 0;
@@ -28,6 +29,11 @@ namespace GildedRose.Stock.Domain.ValueObjects
                 currentValue = result;
         }
 
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+
         public void IncreaseBy(int increaseValue)
         {
             Guard.Against.OutOfRange(increaseValue, nameof(increaseValue), minValue, int.MaxValue);
@@ -38,6 +44,11 @@ namespace GildedRose.Stock.Domain.ValueObjects
                 SetCurrentValueToMax();
             else
                 currentValue = (int)result;
+        }
+
+        protected override bool InternalEquals(QualityValue other)
+        {
+            return Value.Equals(other.Value);
         }
 
         private bool IsResultBelowTheMinAllowedValue(long result)

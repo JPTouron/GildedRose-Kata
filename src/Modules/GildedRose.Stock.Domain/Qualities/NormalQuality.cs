@@ -6,13 +6,15 @@ namespace GildedRose.Stock.Domain.Qualities
 {
     internal class NormalQuality : QualityBaseUpdatable
     {
+        private const int qualityDecreaseRate = 1;
+
         public NormalQuality(QualityValue initialQuality, SellInValue initialSellIn) : base(initialQuality, initialSellIn)
         {
         }
 
         protected override void UpdateQualityInternal()
         {
-            currentQuality.DecreaseBy(1);
+            currentQuality.DecreaseBy(qualityDecreaseRate);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace GildedRose.Stock.Domain.Qualities.Base
 {
     internal abstract class QualityBaseUpdatable : IQuality, IQualityUpdatable
     {
-        protected readonly SellInValue curentSellIn;
+        protected readonly SellInValue currentSellIn;
         protected readonly QualityValue currentQuality;
 
         protected QualityBaseUpdatable(QualityValue initialQuality, SellInValue initialSellIn)
@@ -15,7 +15,7 @@ namespace GildedRose.Stock.Domain.Qualities.Base
             Guard.Against.Null(initialSellIn, nameof(initialSellIn));
 
             currentQuality = initialQuality;
-            curentSellIn = initialSellIn;
+            currentSellIn = initialSellIn;
         }
 
         public int Value => currentQuality.Value;
