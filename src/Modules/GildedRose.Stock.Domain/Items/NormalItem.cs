@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using GildedRose.Stock.Domain.Items.Base;
 using GildedRose.Stock.Domain.Qualities;
-using GildedRose.Stock.Domain.Qualities.Contracts;
+using GildedRose.Stock.Domain.Qualities.Base.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;

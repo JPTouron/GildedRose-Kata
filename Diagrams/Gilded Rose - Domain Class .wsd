@@ -92,7 +92,6 @@ package Domain {
             +ctor(int value) -> validate: value <=50
             +void IncreaseBy(int value)  -> validate: value <=50
             +void DecreaseBy(int value)  -> validate: value <=50
-            +void Reset() -> sets value = 0
             +int Value {get;}
         }
 
@@ -135,6 +134,7 @@ package Domain {
                 #{abstract}ctor (QualityValue initialValue, SellInValue sellIn)
                 __
                 +QualityValue Value
+                __
                 +void UpdateQuality() -> ""sellIn.Decrease()""
                 .....
                 #{abstract} void UpdateQualityInternal()

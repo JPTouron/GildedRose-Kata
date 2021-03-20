@@ -11,7 +11,7 @@ namespace GildedRose.Stock.Domain.ValueObjects
         public QualityValue(int initialValue)
         {
             Guard.Against.OutOfRange(initialValue, nameof(initialValue), minValue, maxValue);
-            this.currentValue = initialValue;
+            currentValue = initialValue;
         }
 
         public int Value => currentValue;

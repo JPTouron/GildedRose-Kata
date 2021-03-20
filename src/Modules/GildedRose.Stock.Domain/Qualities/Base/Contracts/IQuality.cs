@@ -1,4 +1,4 @@
-﻿namespace GildedRose.Stock.Domain.Qualities.Contracts
+﻿namespace GildedRose.Stock.Domain.Qualities.Base.Contracts
 {
     public interface IQuality
     {
