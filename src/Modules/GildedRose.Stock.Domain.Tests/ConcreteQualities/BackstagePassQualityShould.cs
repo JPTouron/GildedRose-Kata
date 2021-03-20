@@ -32,7 +32,7 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
         [InlineData(new object[] { 10, 0, 0 })]
         [InlineData(new object[] { 50, 0, 0 })]
 
-        public void UpdateQualityDependingOnTheSellInValue(int initialQualityValue, int initialSellInValue, int expectedUpdatedQualityValue)
+        public void UpdateQualityDependingOnHowCloseTheConcertDateIs(int initialQualityValue, int initialSellInValue, int expectedUpdatedQualityValue)
         {
             var q = CreateQuality(initialQualityValue, initialSellInValue);
             

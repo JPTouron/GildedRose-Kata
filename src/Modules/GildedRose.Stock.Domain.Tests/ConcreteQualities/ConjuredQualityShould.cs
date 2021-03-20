@@ -7,7 +7,7 @@ using Xunit;
 
 namespace GildedRose.Stock.Domain.ConcreteQualities
 {
-    public class AgedBrieQualityShould
+    public class ConjuredQualityShould
     {
         [Theory]
         [InlineData(new object[] { 0, 2 })]
@@ -23,11 +23,11 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
         }
 
         [Theory]
-        [InlineData(new object[] { 1, 2 })]
-        [InlineData(new object[] { 2, 3 })]
-        [InlineData(new object[] { 10, 11 })]
-        [InlineData(new object[] { 50, 50 })]
-        public void IncreaseItsQualityByOne_WhenQualityIsUpdated(int initialQualityValue, int expectedDecreasedQuality)
+        [InlineData(new object[] { 1, 0 })]
+        [InlineData(new object[] { 2, 0 })]
+        [InlineData(new object[] { 5, 3 })]
+        [InlineData(new object[] { 13, 11 })]
+        public void DecreaseItsQualityByTwo_WhenQualityIsUpdated(int initialQualityValue, int expectedDecreasedQuality)
         {
             int initialSellInValue = GetRandomIntegerBetween(int.MinValue, int.MaxValue);
 
@@ -42,7 +42,7 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
         [ClassData(typeof(DataProvider))]
         internal void Throw_WhenQualityOrSellInValueAreNull(QualityValue qualityValue, SellInValue sellInValue)
         {
-            Assert.Throws<ArgumentNullException>(() => new AgedBrieQuality(qualityValue, sellInValue));
+            Assert.Throws<ArgumentNullException>(() => new ConjuredQuality(qualityValue, sellInValue));
         }
 
         private static QualityValue CreateQualityValue(int initialQualityValue)
@@ -55,12 +55,12 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
             return new SellInValue(initialSellInValue);
         }
 
-        private AgedBrieQuality CreateQuality(int initialQualityValue, int initialSellInValue)
+        private ConjuredQuality CreateQuality(int initialQualityValue, int initialSellInValue)
         {
             var qv = CreateQualityValue(initialQualityValue);
             var sv = CreateSellInValue(initialSellInValue);
 
-            var q = new AgedBrieQuality(qv, sv);
+            var q = new ConjuredQuality(qv, sv);
             return q;
         }
 

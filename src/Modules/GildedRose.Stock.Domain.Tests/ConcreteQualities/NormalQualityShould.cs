@@ -23,6 +23,7 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
         }
 
         [Theory]
+        [InlineData(new object[] { 0, 0 })]
         [InlineData(new object[] { 1, 0 })]
         [InlineData(new object[] { 2, 1 })]
         [InlineData(new object[] { 10, 9 })]
