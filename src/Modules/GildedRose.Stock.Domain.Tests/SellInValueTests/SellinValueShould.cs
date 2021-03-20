@@ -1,9 +1,9 @@
-﻿using GildedRose.Stock.Domain.ValueObjects;
+﻿using GildedRose.Stock.Domain.ValueObjects.SellIn;
 using Xunit;
 
 namespace GildedRose.Stock.Domain.SellInValueTests
 {
-    public class SellinValueShould_Create
+    public class SellinValueShould
     {
         [Theory]
         [InlineData(new object[] { 0 })]

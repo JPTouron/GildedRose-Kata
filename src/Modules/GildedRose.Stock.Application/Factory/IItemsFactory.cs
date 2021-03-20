@@ -1,9 +1,9 @@
-﻿using GildedRose.Stock.Domain.Items.Base;
+﻿using GildedRose.Stock.Domain.Items;
 
 namespace GildedRose.Stock.Application.Factory
 {
-    public interface IItemsFactory
+    public interface IUpdatableItemsFactory
     {
-        IItem CreateItem(Item item);
+        IUpdatableItemAdapter CreateItem(Item item);
     }
 }

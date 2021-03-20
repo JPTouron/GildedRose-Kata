@@ -4,6 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <!--JP: NOT HAPPY WITH THIS REALLY BUT HAVEN'T FOUND A BETTER TECHNIQUE TO DO TDD WHILE HEAVELITY USING INTERNAL CLASSES WITHIN DOMAIN-->
+      <_Parameter1>GildedRose.Stock.Applications.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\GildedRose.Stock.Domain\GildedRose.Stock.Domain.csproj" />
   </ItemGroup>

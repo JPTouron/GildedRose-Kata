@@ -1,15 +1,16 @@
 ﻿using Ardalis.GuardClauses;
 using GildedRose.Stock.Domain.Qualities.Contracts;
 using GildedRose.Stock.Domain.ValueObjects;
+using GildedRose.Stock.Domain.ValueObjects.SellIn;
 
 namespace GildedRose.Stock.Domain.Qualities.Base
 {
-    internal abstract class QualityBaseUpdatable : IQuality, IQualityUpdatable
+    public abstract class BaseUpdatableQuality : IQuality, IQualityUpdatable
     {
         protected readonly QualityValue currentQuality;
-        protected readonly SellInValue currentSellIn;
+        protected readonly SellInValueUpdatable currentSellIn;
 
-        protected QualityBaseUpdatable(QualityValue initialQuality, SellInValue initialSellIn)
+        protected BaseUpdatableQuality(QualityValue initialQuality, SellInValueUpdatable initialSellIn)
         {
             Guard.Against.Null(initialQuality, nameof(initialQuality));
             Guard.Against.Null(initialSellIn, nameof(initialSellIn));

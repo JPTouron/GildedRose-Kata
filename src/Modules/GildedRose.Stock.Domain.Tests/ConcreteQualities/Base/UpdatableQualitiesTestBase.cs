@@ -1,5 +1,6 @@
 ﻿using GildedRose.Stock.Domain.Qualities.Base;
 using GildedRose.Stock.Domain.ValueObjects;
+using GildedRose.Stock.Domain.ValueObjects.SellIn;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace GildedRose.Stock.Domain.ConcreteQualities.Base
 {
     public abstract class UpdatableQualitiesTestBase
     {
-        internal QualityBaseUpdatable CreateQuality(int initialQualityValue, int initialSellInValue)
+        internal BaseUpdatableQuality CreateQuality(int initialQualityValue, int initialSellInValue)
         {
             var qv = CreateQualityValue(initialQualityValue);
             var sv = CreateSellInValue(initialSellInValue);
@@ -17,7 +18,7 @@ namespace GildedRose.Stock.Domain.ConcreteQualities.Base
             return q;
         }
 
-        internal abstract QualityBaseUpdatable InternalQualityCreation(QualityValue qv, SellInValue sv);
+        internal abstract BaseUpdatableQuality InternalQualityCreation(QualityValue qv, SellInValueUpdatable sv);
 
         protected int GetRandomIntegerBetween(int min, int max)
         {
@@ -32,9 +33,9 @@ namespace GildedRose.Stock.Domain.ConcreteQualities.Base
             return new QualityValue(initialQualityValue);
         }
 
-        private static SellInValue CreateSellInValue(int initialSellInValue)
+        private static SellInValueUpdatable CreateSellInValue(int initialSellInValue)
         {
-            return new SellInValue(initialSellInValue);
+            return new SellInValueUpdatable(initialSellInValue);
         }
 
         protected class DataProvider : IEnumerable<object[]>

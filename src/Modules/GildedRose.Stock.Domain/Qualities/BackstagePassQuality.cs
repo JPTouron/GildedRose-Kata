@@ -1,16 +1,17 @@
 ﻿using GildedRose.Stock.Domain.Qualities.Base;
 using GildedRose.Stock.Domain.ValueObjects;
+using GildedRose.Stock.Domain.ValueObjects.SellIn;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace GildedRose.Stock.Domain.Qualities
 {
-    internal class BackstagePassQuality : QualityBaseUpdatable
+    public class BackstagePassQuality : BaseUpdatableQuality
     {
         private IReadOnlyList<QualityUpdateRule> qualityUpdateRules;
 
-        public BackstagePassQuality(QualityValue initialQuality, SellInValue initialSellIn) : base(initialQuality, initialSellIn)
+        public BackstagePassQuality(QualityValue initialQuality, SellInValueUpdatable initialSellIn) : base(initialQuality, initialSellIn)
         {
             LoadQualityUpdateRules();
         }

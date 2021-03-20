@@ -2,6 +2,7 @@
 using GildedRose.Stock.Domain.Qualities;
 using GildedRose.Stock.Domain.Qualities.Base;
 using GildedRose.Stock.Domain.ValueObjects;
+using GildedRose.Stock.Domain.ValueObjects.SellIn;
 using System;
 using Xunit;
 
@@ -38,14 +39,14 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
             Assert.Equal(expectedDecreasedQuality, q.Value);
         }
 
-        internal override QualityBaseUpdatable InternalQualityCreation(QualityValue qv, SellInValue sv)
+        internal override BaseUpdatableQuality InternalQualityCreation(QualityValue qv, SellInValueUpdatable sv)
         {
             return new ConjuredQuality(qv, sv);
         }
 
         [Theory]
         [ClassData(typeof(DataProvider))]
-        internal void Throw_WhenQualityOrSellInValueAreNull(QualityValue qualityValue, SellInValue sellInValue)
+        internal void Throw_WhenQualityOrSellInValueAreNull(QualityValue qualityValue, SellInValueUpdatable sellInValue)
         {
             Assert.Throws<ArgumentNullException>(() => new ConjuredQuality(qualityValue, sellInValue));
         }

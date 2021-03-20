@@ -1,13 +1,14 @@
 ﻿using GildedRose.Stock.Domain.Qualities.Base;
 using GildedRose.Stock.Domain.ValueObjects;
+using GildedRose.Stock.Domain.ValueObjects.SellIn;
 
 namespace GildedRose.Stock.Domain.Qualities
 {
-    internal class AgedBrieQuality : QualityBaseUpdatable
+    public class AgedBrieQuality : BaseUpdatableQuality
     {
         private const int qualityIncreaseRate = 1;
 
-        public AgedBrieQuality(QualityValue initialQuality, SellInValue initialSellIn) : base(initialQuality, initialSellIn)
+        public AgedBrieQuality(QualityValue initialQuality, SellInValueUpdatable initialSellIn) : base(initialQuality, initialSellIn)
         {
         }
 

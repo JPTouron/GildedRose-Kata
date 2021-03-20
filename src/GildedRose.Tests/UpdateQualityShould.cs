@@ -1,6 +1,6 @@
 //using FluentAssertions;
 using GildedRose.Console;
-using GildedRose.Stock.Domain.Items.Base;
+using GildedRose.Stock.Domain.Items;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -42,25 +42,14 @@ namespace GildedRose.Tests
             const string backstagePass = "Backstage passes to a TAFKAL80ETC concert";
             const string conjured = "Conjured Mana Cake";
 
-            sut = new Program()
-            {
-                Items = new List<Item>
-                {
-                     new Item { Name = dexterityVest, SellIn = 10, Quality = 20},
-                     new Item { Name = agedBrie, SellIn = 2, Quality = 0},
-                     new Item { Name = elixir, SellIn = 5, Quality = 7},
-                     new Item { Name = sulfuras, SellIn = 0, Quality = 80},
-                     new Item { Name = backstagePass, SellIn = 15, Quality = 20 },
-                     new Item { Name = conjured, SellIn = 3, Quality = 6}
-                }
-            };
+            sut = new Program();
 
             sut.UpdateQuality();
 
             AssertThis(dexterityVest, 9, 19);
             AssertThis(agedBrie, 1, 1);
             AssertThis(elixir, 4, 6);
-            AssertThis(sulfuras, 0, 80);
+            AssertThis(sulfuras, 0, 50);
             AssertThis(backstagePass, 14, 21);
             AssertThis(conjured, 2, 4);
         }

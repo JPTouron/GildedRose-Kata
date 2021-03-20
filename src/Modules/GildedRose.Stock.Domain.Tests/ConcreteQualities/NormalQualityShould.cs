@@ -2,6 +2,7 @@
 using GildedRose.Stock.Domain.Qualities;
 using GildedRose.Stock.Domain.Qualities.Base;
 using GildedRose.Stock.Domain.ValueObjects;
+using GildedRose.Stock.Domain.ValueObjects.SellIn;
 using System;
 using Xunit;
 
@@ -38,19 +39,16 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
             Assert.Equal(expectedDecreasedQuality, q.Value);
         }
 
-        internal override QualityBaseUpdatable InternalQualityCreation(QualityValue qv, SellInValue sv)
-        {
-            return new NormalQuality(qv, sv);
-        }
-
         [Theory]
         [ClassData(typeof(DataProvider))]
-        internal void Throw_WhenQualityOrSellInValueAreNull(QualityValue qualityValue, SellInValue sellInValue)
+        public void Throw_WhenQualityOrSellInValueAreNull(QualityValue qualityValue, SellInValueUpdatable sellInValue)
         {
-            /*JP: this method is INTERNAL as the SellInValue class is internal
-             * and we dont wanna make it public, if we hadn't used theory for this test, this would not be a problem
-             */
             Assert.Throws<ArgumentNullException>(() => new NormalQuality(qualityValue, sellInValue));
+        }
+
+        internal override BaseUpdatableQuality InternalQualityCreation(QualityValue qv, SellInValueUpdatable sv)
+        {
+            return new NormalQuality(qv, sv);
         }
     }
 }

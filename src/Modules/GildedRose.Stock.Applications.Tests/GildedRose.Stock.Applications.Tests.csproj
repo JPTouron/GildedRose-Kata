@@ -25,4 +25,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GildedRose.Stock.Application\GildedRose.Stock.Application.csproj" />
+  </ItemGroup>
+
 </Project>
