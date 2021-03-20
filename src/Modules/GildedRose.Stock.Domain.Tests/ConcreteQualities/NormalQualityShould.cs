@@ -5,9 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 
-namespace GildedRose.Stock.Domain.NormalQualityTests
+namespace GildedRose.Stock.Domain.ConcreteQualities
 {
-    public class NormalQualityShould_Create
+    public class NormalQualityShould
     {
         [Theory]
         [InlineData(new object[] { 0, 2 })]
@@ -26,7 +26,7 @@ namespace GildedRose.Stock.Domain.NormalQualityTests
         [InlineData(new object[] { 1, 0 })]
         [InlineData(new object[] { 2, 1 })]
         [InlineData(new object[] { 10, 9 })]
-        public void DecreaseItsQualityByOne(int initialQualityValue, int expectedDecreasedQuality)
+        public void DecreaseItsQualityByOne_WhenQualityIsUpdated(int initialQualityValue, int expectedDecreasedQuality)
         {
             int initialSellInValue = GetRandomIntegerBetween(int.MinValue, int.MaxValue);
 
