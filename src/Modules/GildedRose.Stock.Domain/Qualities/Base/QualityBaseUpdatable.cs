@@ -1,5 +1,5 @@
 ﻿using Ardalis.GuardClauses;
-using GildedRose.Stock.Domain.Qualities.Base.Contracts;
+using GildedRose.Stock.Domain.Qualities.Contracts;
 using GildedRose.Stock.Domain.ValueObjects;
 
 namespace GildedRose.Stock.Domain.Qualities.Base
