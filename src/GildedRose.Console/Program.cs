@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace GildedRose.Console
 {
-
     public class Program
     {
         public IList<Item> Items;

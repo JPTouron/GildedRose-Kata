@@ -1,6 +1,5 @@
 ﻿namespace GildedRose.Stock.Domain.Items.Base
 {
-
     public class Item
     {
         public string Name { get; set; }

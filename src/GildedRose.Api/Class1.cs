@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GildedRose.Api
+﻿namespace GildedRose.Api
 {
     public class Class1
     {

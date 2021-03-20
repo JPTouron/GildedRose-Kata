@@ -19,9 +19,9 @@ namespace GildedRose.Stock.Domain.Qualities
 
         private bool fiveDaysOrLessThanToConcert => currentSellIn.Value <= 5;
 
-        private bool tenDaysOrlessToConcert => currentSellIn.Value <= 10;
-
         private bool moreThanTenDaysToConcert => currentSellIn.Value > 10;
+
+        private bool tenDaysOrlessToConcert => currentSellIn.Value <= 10;
 
         protected override void UpdateQualityInternal()
         {
@@ -34,7 +34,6 @@ namespace GildedRose.Stock.Domain.Qualities
                 noRuleApplied = !rule.Execute();
 
                 ruleIndex++;
-
             } while (noRuleApplied);
         }
 

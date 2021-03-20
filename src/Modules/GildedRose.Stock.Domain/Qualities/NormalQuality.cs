@@ -1,5 +1,4 @@
 ﻿using GildedRose.Stock.Domain.Qualities.Base;
-using GildedRose.Stock.Domain.Qualities.Base.Contracts;
 using GildedRose.Stock.Domain.ValueObjects;
 
 namespace GildedRose.Stock.Domain.Qualities

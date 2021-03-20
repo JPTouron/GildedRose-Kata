@@ -1,13 +1,13 @@
-﻿using GildedRose.Stock.Domain.Qualities;
+﻿using GildedRose.Stock.Domain.ConcreteQualities.Base;
+using GildedRose.Stock.Domain.Qualities;
+using GildedRose.Stock.Domain.Qualities.Base;
 using GildedRose.Stock.Domain.ValueObjects;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace GildedRose.Stock.Domain.ConcreteQualities
 {
-    public class NormalQualityShould
+    public class NormalQualityShould : UpdatableQualitiesTestBase
     {
         [Theory]
         [InlineData(new object[] { 0, 2 })]
@@ -38,6 +38,11 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
             Assert.Equal(expectedDecreasedQuality, q.Value);
         }
 
+        internal override QualityBaseUpdatable InternalQualityCreation(QualityValue qv, SellInValue sv)
+        {
+            return new NormalQuality(qv, sv);
+        }
+
         [Theory]
         [ClassData(typeof(DataProvider))]
         internal void Throw_WhenQualityOrSellInValueAreNull(QualityValue qualityValue, SellInValue sellInValue)
@@ -46,48 +51,6 @@ namespace GildedRose.Stock.Domain.ConcreteQualities
              * and we dont wanna make it public, if we hadn't used theory for this test, this would not be a problem
              */
             Assert.Throws<ArgumentNullException>(() => new NormalQuality(qualityValue, sellInValue));
-        }
-
-        private static QualityValue CreateQualityValue(int initialQualityValue)
-        {
-            return new QualityValue(initialQualityValue);
-        }
-
-        private static SellInValue CreateSellInValue(int initialSellInValue)
-        {
-            return new SellInValue(initialSellInValue);
-        }
-
-        private NormalQuality CreateQuality(int initialQualityValue, int initialSellInValue)
-        {
-            var qv = CreateQualityValue(initialQualityValue);
-            var sv = CreateSellInValue(initialSellInValue);
-
-            var q = new NormalQuality(qv, sv);
-            return q;
-        }
-
-        private int GetRandomIntegerBetween(int min, int max)
-        {
-            var r = new Random();
-            int initialSellInValue = r.Next(min, max);
-
-            return initialSellInValue;
-        }
-
-        private class DataProvider : IEnumerable<object[]>
-        {
-            public IEnumerator<object[]> GetEnumerator()
-            {
-                var r = new Random();
-                var qv = r.Next(0, 50);
-                var sv = r.Next();
-                yield return new object[] { CreateQualityValue(qv), null };
-                yield return new object[] { null, CreateSellInValue(sv) };
-                yield return new object[] { null, null };
-            }
-
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
     }
 }

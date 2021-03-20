@@ -15,6 +15,24 @@ namespace GildedRose.Tests
         private Program sut;
 
         [Fact]
+        public void DecreaseQualityOfConjuredItemByTwo_AndDecreaseSellInByOne()
+        {
+            const string conjured = "Conjured Mana Cake";
+
+            sut = new Program()
+            {
+                Items = new List<Item>
+                {
+                     new Item { Name = conjured, SellIn = 3, Quality = 6}
+                }
+            };
+
+            sut.UpdateQuality();
+
+            AssertThis(conjured, 2, 4);
+        }
+
+        [Fact]
         public void UpdateQualityAccordingToSpecs_AndDecreaseSellInByOne()
         {
             const string dexterityVest = "+5 Dexterity Vest";
@@ -44,24 +62,6 @@ namespace GildedRose.Tests
             AssertThis(elixir, 4, 6);
             AssertThis(sulfuras, 0, 80);
             AssertThis(backstagePass, 14, 21);
-            AssertThis(conjured, 2, 4);
-        }
-
-        [Fact]
-        public void DecreaseQualityOfConjuredItemByTwo_AndDecreaseSellInByOne()
-        {
-            const string conjured = "Conjured Mana Cake";
-
-            sut = new Program()
-            {
-                Items = new List<Item>
-                {
-                     new Item { Name = conjured, SellIn = 3, Quality = 6}
-                }
-            };
-
-            sut.UpdateQuality();
-
             AssertThis(conjured, 2, 4);
         }
 

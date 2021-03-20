@@ -2,7 +2,6 @@
 using System;
 using Xunit;
 
-
 namespace GildedRose.Stock.Domain.QualityValueTests
 {
     public partial class QualityValueShould
