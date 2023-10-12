@@ -7,7 +7,7 @@ namespace GildedRose.Tests
         [Fact]
         public void FailingTest()
         {
-            Assert.True(true);
+            Assert.True(false);
         }
     }
 }
