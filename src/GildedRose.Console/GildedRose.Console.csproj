@@ -5,4 +5,8 @@
         <TargetFramework>netcoreapp6.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\GildedRose.Application\GildedRose.Application.csproj" />
+    </ItemGroup>
+
 </Project>
