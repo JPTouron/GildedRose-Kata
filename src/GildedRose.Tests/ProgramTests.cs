@@ -7,7 +7,7 @@ namespace GildedRose.Tests;
 public class ProgramTests
 {
     [Fact]
-    public void FirstTest()
+    public void WhenExecuted_ThenMustReturnExpectedOutput()
     {
         //arrange
         using (var consoleRedirect = new ConsoleOutputRedirect())
