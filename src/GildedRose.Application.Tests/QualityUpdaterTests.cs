@@ -1,5 +1,4 @@
-﻿using System.IO;
-using GildedRose.Console;
+﻿using GildedRose.Application;
 using Xunit;
 
 namespace GildedRose.Tests;

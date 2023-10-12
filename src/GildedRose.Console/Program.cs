@@ -1,4 +1,6 @@
-﻿namespace GildedRose.Console;
+﻿using GildedRose.Application;
+
+namespace GildedRose.Console;
 
 public class Program
 {
