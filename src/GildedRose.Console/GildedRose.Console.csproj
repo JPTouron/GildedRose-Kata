@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GildedRose.Application\GildedRose.Application.csproj" />
+      <ProjectReference Include="..\GildedRose.CompositionRoot\GildedRose.CompositionRoot.csproj" />
     </ItemGroup>
 
 </Project>

@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GildedRose.Application\GildedRose.Application.csproj" />
+    <ProjectReference Include="..\GildedRose.Domain\GildedRose.Domain.csproj" />
+    <ProjectReference Include="..\GildedRose.Infrastructure\GildedRose.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
