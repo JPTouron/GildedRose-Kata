@@ -1,14 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace GildedRose.Console
 {
-    class Program
+    public class Program
     {
-        IList<Item> Items;
-        static void Main(string[] args)
+        public static StringBuilder ConsoleOutput;
+        private IList<Item> Items;
+
+        public static void Main(string[] args)
         {
-            System.Console.WriteLine("OMGHAI!");
+            DoMain();
+
+            System.Console.WriteLine(ConsoleOutput);
+            System.Console.ReadKey();
+        }
+
+        public static void DoMain()
+        {
+            ConsoleOutput = new StringBuilder();
 
             var app = new Program()
             {
@@ -26,13 +36,27 @@ namespace GildedRose.Console
                                                   },
                                               new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
                                           }
-
             };
+
+            ConsoleOutput.AppendLine("OMGHAI!");
+
+            ConsoleOutput.AppendLine("Stored Items Current Status:");
+
+            foreach (var item in app.Items)
+                ConsoleOutput.AppendLine($"Name: '{item.Name}', Quality: '{item.Quality}', SellIn: '{item.SellIn}'");
+
+            ConsoleOutput.AppendLine("");
+            ConsoleOutput.AppendLine("=========================================");
+            ConsoleOutput.AppendLine("Items have been updated");
+            ConsoleOutput.AppendLine("=========================================");
+            ConsoleOutput.AppendLine("");
 
             app.UpdateQuality();
 
-            System.Console.ReadKey();
+            ConsoleOutput.AppendLine("Stored Items Status After Update:");
 
+            foreach (var item in app.Items)
+                ConsoleOutput.AppendLine($"Name: '{item.Name}', Quality: '{item.Quality}', SellIn: '{item.SellIn}'");
         }
 
         public void UpdateQuality()
@@ -110,7 +134,6 @@ namespace GildedRose.Console
                 }
             }
         }
-
     }
 
     public class Item

@@ -7,6 +7,17 @@ http://iamnotmyself.com/2011/02/14/refactor-this-the-gilded-rose-kata/
 Refactor the code following the guidelines set in the next section.
 There are no limits or constraints regarding the refactored finished code whatsoever.
 The only limitation is that the code must behave as it already does, prior any refactoring.
+Focus on the structure of your code following the SRP and the Newspaper analogy.
+The application logic should be well encapsulated in a way than later, when you change the application UI, the business core logic does not become affected by this change.
+
+Some questions to help you think over the design
+- What part of the code deals with the updates? 
+- What part of the code deals with the output?
+- Can you render your application as a web page or a win forms?
+- If you'd have to add a new feature to remove the Aged Brie from the items list, what part(s) of your application change(s) ?
+	- Can you develop this?
+- If the update rules change for a material, like either Sulfuras or Backstage Passes, how many parts of yor application change?
+- If we need to create files with the output of each run, named: YYYY-MM-DD HH-mm-SS.txt, how many parts of your application change?
 
 ## Problem Description:
 
@@ -37,10 +48,7 @@ We have recently signed a supplier of conjured items. This requires an update to
 	- "Conjured" items degrade in Quality twice as fast as normal items
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything
-still works correctly. However, do not alter the Item class or Items property as those belong to the
-goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code
-ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover
-for you).
+still works correctly.
 
 Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
 legendary item and as such its Quality is 80 and it never alters.
